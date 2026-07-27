@@ -1,0 +1,1321 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Jul 27 16:54:41 2026
+# Process ID: 2354972
+# Current directory: /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet
+# Command line: vivado -mode batch -source Scripts/build.tcl
+# Log file: /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/vivado.log
+# Journal file: /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/vivado.jou
+#-----------------------------------------------------------
+source Scripts/build.tcl
+# puts ""
+
+# puts "========================================="
+=========================================
+# puts "Gigabit Ethernet Build Started"
+Gigabit Ethernet Build Started
+# puts "========================================="
+=========================================
+# puts ""
+
+# source Scripts/variables.tcl
+## set PROJECT_NAME "gigabit_ethernet"
+## set PART         "xc7a100tfgg484-2"
+## set TOP          "gmii_top"
+## set ROOT_DIR        [pwd]
+## set RTL_DIR         "$ROOT_DIR/RTL"
+## set CONSTRAINTS_DIR "$ROOT_DIR/Constraints"
+## set IP_DIR          "$ROOT_DIR/IP"
+## set SCRIPTS_DIR     "$ROOT_DIR/Scripts"
+## set OUTPUT_DIR      "$ROOT_DIR/Output"
+## set BIT_DIR         "$OUTPUT_DIR/bitstream"
+## set CHECKPOINT_DIR  "$OUTPUT_DIR/checkpoint"
+## set REPORTS_DIR     "$OUTPUT_DIR/reports"
+## foreach dir [list \
+##     $OUTPUT_DIR \
+##     $BIT_DIR \
+##     $CHECKPOINT_DIR \
+##     $REPORTS_DIR] {
+## 
+##     file mkdir $dir
+## }
+## set BIT_FILE        "$BIT_DIR/$TOP.bit"
+## set DCP_FILE        "$CHECKPOINT_DIR/$TOP.dcp"
+## set UTIL_REPORT     "$REPORTS_DIR/utilization.rpt"
+## set TIMING_REPORT   "$REPORTS_DIR/timing_summary.rpt"
+## set POWER_REPORT    "$REPORTS_DIR/power.rpt"
+# create_project \
+#     -in_memory \
+#     -part $PART
+# source Scripts/create_ips.tcl
+## foreach ip_dir {clk_gen vio_mdio vio_gmii_tx vio_gmii_rx} {
+## 
+##     # Drop the IP from the in-memory design first, otherwise create_ip below
+##     # sees the name taken and silently renames it to <ip>_1, <ip>_2, ...
+##     if {[llength [get_ips -quiet $ip_dir]] > 0} {
+## 
+##         puts "Removing in-memory IP: $ip_dir"
+## 
+##         remove_files [get_files -quiet -of_objects [get_ips $ip_dir]]
+##     }
+## 
+##     set output_dir "$IP_DIR/$ip_dir/output"
+##         if {[file exists $output_dir]} {
+##             foreach item [glob -nocomplain "$output_dir/*"] {
+##                 file delete -force $item
+##             }
+##         }
+## }
+## puts "Existing Directories cleared"
+Existing Directories cleared
+## puts "Creating IPs"
+Creating IPs
+## puts "Generating clk_gen IP"
+Generating clk_gen IP
+## source "$IP_DIR/clk_gen/create_clk_gen.tcl"
+### set IP_NAME clk_gen
+### puts "Generating $IP_NAME IP in $IP_DIR"
+Generating clk_gen IP in /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP
+### create_ip \
+###     -name clk_wiz \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 6.0 \
+###     -module_name $IP_NAME \
+###     -dir $IP_DIR/clk_gen/output
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2020/Vivado/2020.2/data/ip'.
+### set_property -dict [list \
+###     CONFIG.PRIM_SOURCE                  {Differential_clock_capable_pin} \
+###     CONFIG.PRIM_IN_FREQ                 {200.000} \
+###     CONFIG.NUM_OUT_CLKS                 {2} \
+###     CONFIG.CLKOUT1_USED                 {true} \
+###     CONFIG.CLKOUT2_USED                 {true} \
+###     CONFIG.CLK_OUT1_PORT                {clk_100} \
+###     CONFIG.CLK_OUT2_PORT                {clk_125} \
+###     CONFIG.CLKOUT2_REQUESTED_OUT_FREQ   {125.000} \
+###     CONFIG.USE_RESET                    {false} \
+###     CONFIG.USE_LOCKED                   {false} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'clk_gen'...
+### synth_ip [get_ips $IP_NAME]
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2020/Vivado/2020.2/data/ip'.
+Command: synth_design -top clk_gen -part xc7a100tfgg484-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tfgg484-2
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2355073
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2481.859 ; gain = 0.000 ; free physical = 4303 ; free virtual = 67844
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'clk_gen' [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.v:71]
+INFO: [Synth 8-6157] synthesizing module 'clk_gen_clk_wiz' [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_clk_wiz.v:69]
+INFO: [Synth 8-6157] synthesizing module 'IBUFDS' [/tools/Xilinx/2020/Vivado/2020.2/scripts/rt/data/unisim_comp.v:32998]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter DIFF_TERM bound to: FALSE - type: string 
+	Parameter DQS_BIAS bound to: FALSE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IBUFDS' (1#1) [/tools/Xilinx/2020/Vivado/2020.2/scripts/rt/data/unisim_comp.v:32998]
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [/tools/Xilinx/2020/Vivado/2020.2/scripts/rt/data/unisim_comp.v:39998]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 5.000000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 5.000000 - type: double 
+	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 8 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT2_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT4_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT5_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT6_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter IS_CLKINSEL_INVERTED bound to: 1'b0 
+	Parameter IS_PSEN_INVERTED bound to: 1'b0 
+	Parameter IS_PSINCDEC_INVERTED bound to: 1'b0 
+	Parameter IS_PWRDWN_INVERTED bound to: 1'b0 
+	Parameter IS_RST_INVERTED bound to: 1'b0 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter REF_JITTER2 bound to: 0.010000 - type: double 
+	Parameter SS_EN bound to: FALSE - type: string 
+	Parameter SS_MODE bound to: CENTER_HIGH - type: string 
+	Parameter SS_MOD_PERIOD bound to: 10000 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_ADV' (2#1) [/tools/Xilinx/2020/Vivado/2020.2/scripts/rt/data/unisim_comp.v:39998]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [/tools/Xilinx/2020/Vivado/2020.2/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (3#1) [/tools/Xilinx/2020/Vivado/2020.2/scripts/rt/data/unisim_comp.v:1083]
+INFO: [Synth 8-6155] done synthesizing module 'clk_gen_clk_wiz' (4#1) [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_clk_wiz.v:69]
+INFO: [Synth 8-6155] done synthesizing module 'clk_gen' (5#1) [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.v:71]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2481.859 ; gain = 0.000 ; free physical = 4333 ; free virtual = 67875
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2490.652 ; gain = 8.793 ; free physical = 5022 ; free virtual = 68563
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2490.652 ; gain = 8.793 ; free physical = 5022 ; free virtual = 68563
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2497.590 ; gain = 0.000 ; free physical = 5054 ; free virtual = 68595
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_board.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_board.xdc] for cell 'inst'
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc] for cell 'inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/clk_gen_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/clk_gen_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2571.527 ; gain = 0.000 ; free physical = 5000 ; free virtual = 68542
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2571.527 ; gain = 0.000 ; free physical = 5000 ; free virtual = 68542
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 5074 ; free virtual = 68615
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 5074 ; free virtual = 68615
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 5074 ; free virtual = 68615
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 5073 ; free virtual = 68615
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 5071 ; free virtual = 68616
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4948 ; free virtual = 68493
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4948 ; free virtual = 68493
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4944 ; free virtual = 68489
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFG       |     3|
+|2     |MMCME2_ADV |     1|
+|3     |IBUFDS     |     1|
++------+-----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 4946 ; free virtual = 68491
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2571.527 ; gain = 8.793 ; free physical = 5005 ; free virtual = 68550
+Synthesis Optimization Complete : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2571.527 ; gain = 89.668 ; free physical = 5005 ; free virtual = 68550
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2571.527 ; gain = 0.000 ; free physical = 4998 ; free virtual = 68543
+INFO: [Netlist 29-17] Analyzing 2 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_ooc.xdc] for cell 'inst'
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_board.xdc] for cell 'inst'
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_board.xdc] for cell 'inst'
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc] for cell 'inst'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc:57]
+INFO: [Timing 38-2] Deriving generated clocks [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc:57]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.xdc] for cell 'inst'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2943.422 ; gain = 0.000 ; free physical = 4717 ; free virtual = 68262
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+33 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2943.422 ; gain = 461.676 ; free physical = 4852 ; free virtual = 68397
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint '/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen.dcp' has been generated.
+INFO: [Vivado 12-3441] generate_netlist_ip - operation complete
+synth_ip: Time (s): cpu = 00:00:16 ; elapsed = 00:00:15 . Memory (MB): peak = 2983.441 ; gain = 501.695 ; free physical = 4934 ; free virtual = 68475
+### puts "Clock wizard IP generation complete"
+Clock wizard IP generation complete
+## puts "Generating vio_mdio IP"
+Generating vio_mdio IP
+## source "$IP_DIR/vio_mdio/vio_mdio.tcl"
+### set IP_NAME vio_mdio
+### puts "Creating VIO IP: $IP_NAME"
+Creating VIO IP: vio_mdio
+### create_ip \
+###     -name vio \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 3.0 \
+###     -module_name $IP_NAME \
+###     -dir "$IP_DIR/vio_mdio/output"
+### set_property -dict [list \
+###     CONFIG.C_NUM_PROBE_IN        {2} \
+###     CONFIG.C_NUM_PROBE_OUT       {7} \
+###     CONFIG.C_PROBE_IN0_WIDTH     {16} \
+###     CONFIG.C_PROBE_IN1_WIDTH     {16} \
+###     CONFIG.C_PROBE_OUT1_WIDTH    {5} \
+###     CONFIG.C_PROBE_OUT1_INIT_VAL {0x1} \
+###     CONFIG.C_PROBE_OUT2_WIDTH    {5} \
+###     CONFIG.C_PROBE_OUT5_WIDTH    {16} \
+###     CONFIG.C_PROBE_OUT5_INIT_VAL {0x1340} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'vio_mdio'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vio_mdio'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'vio_mdio'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'vio_mdio'...
+### synth_ip [get_ips $IP_NAME]
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2020/Vivado/2020.2/data/ip'.
+Command: synth_design -top vio_mdio -part xc7a100tfgg484-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2983.441 ; gain = 0.000 ; free physical = 3885 ; free virtual = 67429
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'vio_mdio' [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/synth/vio_mdio.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'vio_mdio' (8#1) [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/synth/vio_mdio.v:59]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2983.441 ; gain = 0.000 ; free physical = 4667 ; free virtual = 68211
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2983.441 ; gain = 0.000 ; free physical = 4669 ; free virtual = 68213
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2983.441 ; gain = 0.000 ; free physical = 4669 ; free virtual = 68213
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2983.441 ; gain = 0.000 ; free physical = 4663 ; free virtual = 68207
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio_ooc.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio_ooc.xdc]
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3088.016 ; gain = 0.000 ; free physical = 4593 ; free virtual = 68137
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3088.016 ; gain = 0.000 ; free physical = 4593 ; free virtual = 68137
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4658 ; free virtual = 68202
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4658 ; free virtual = 68202
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4658 ; free virtual = 68202
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4650 ; free virtual = 68195
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 1     
++---Registers : 
+	              128 Bit    Registers := 1     
+	               32 Bit    Registers := 5     
+	               16 Bit    Registers := 15    
+	               12 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 3     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 25    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 2     
+	   4 Input   12 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 12    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4640 ; free virtual = 68189
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4591 ; free virtual = 68140
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4591 ; free virtual = 68140
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4586 ; free virtual = 68135
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[36] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[35] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[34] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[33] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[32] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[31] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[30] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[29] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[28] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[27] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[26] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[25] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[24] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[23] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[22] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[21] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[20] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[19] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[18] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[17] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[16] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[15] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[14] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[13] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[12] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[11] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[10] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[9] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[8] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[7] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[6] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[5] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[4] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[3] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[2] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[1] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |LUT1  |     3|
+|2     |LUT2  |    12|
+|3     |LUT3  |    29|
+|4     |LUT4  |    82|
+|5     |LUT5  |    38|
+|6     |LUT6  |    97|
+|7     |MUXF7 |     1|
+|8     |FDRE  |   489|
+|9     |FDSE  |    10|
++------+------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4582 ; free virtual = 68130
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3088.016 ; gain = 0.000 ; free physical = 4638 ; free virtual = 68187
+Synthesis Optimization Complete : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4638 ; free virtual = 68187
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3088.016 ; gain = 0.000 ; free physical = 4727 ; free virtual = 68276
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio_ooc.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio_ooc.xdc]
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3088.016 ; gain = 0.000 ; free physical = 4663 ; free virtual = 68212
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+16 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:10 . Memory (MB): peak = 3088.016 ; gain = 104.574 ; free physical = 4800 ; free virtual = 68349
+INFO: [Coretcl 2-1174] Renamed 13 cell refs.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint '/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_mdio/output/vio_mdio/vio_mdio.dcp' has been generated.
+INFO: [Vivado 12-3441] generate_netlist_ip - operation complete
+synth_ip: Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 3128.035 ; gain = 144.594 ; free physical = 4888 ; free virtual = 68433
+### puts "VIO MDIO created successfully."
+VIO MDIO created successfully.
+## puts "Generating vio_gmii_tx IP"
+Generating vio_gmii_tx IP
+## source "$IP_DIR/vio_gmii_tx/vio_gmii_tx.tcl"
+### set IP_NAME vio_gmii_tx
+### puts "Creating VIO IP: $IP_NAME"
+Creating VIO IP: vio_gmii_tx
+### create_ip \
+###     -name vio \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 3.0 \
+###     -module_name $IP_NAME \
+###     -dir "$IP_DIR/vio_gmii_tx/output"
+### set_property -dict [list \
+###     CONFIG.C_NUM_PROBE_IN      {1} \
+###     CONFIG.C_NUM_PROBE_OUT     {6} \
+###     CONFIG.C_PROBE_IN0_WIDTH   {1} \
+###     CONFIG.C_PROBE_OUT0_WIDTH  {1} \
+###     CONFIG.C_PROBE_OUT1_WIDTH  {48} \
+###     CONFIG.C_PROBE_OUT2_WIDTH  {48} \
+###     CONFIG.C_PROBE_OUT3_WIDTH  {16} \
+###     CONFIG.C_PROBE_OUT4_WIDTH  {32} \
+###     CONFIG.C_PROBE_OUT5_WIDTH  {1} \
+###     CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+###     CONFIG.C_PROBE_OUT1_INIT_VAL {0x000000FFFFFF} \
+###     CONFIG.C_PROBE_OUT2_INIT_VAL {0x02123456789A} \
+###     CONFIG.C_PROBE_OUT3_INIT_VAL {0x88B5} \
+###     CONFIG.C_PROBE_OUT4_INIT_VAL {0x83E8CCEE} \
+###     CONFIG.C_PROBE_OUT5_INIT_VAL {0x0} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'vio_gmii_tx'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vio_gmii_tx'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'vio_gmii_tx'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'vio_gmii_tx'...
+### synth_ip [get_ips $IP_NAME]
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2020/Vivado/2020.2/data/ip'.
+Command: synth_design -top vio_gmii_tx -part xc7a100tfgg484-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 3128.035 ; gain = 0.000 ; free physical = 3859 ; free virtual = 67406
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'vio_gmii_tx' [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/synth/vio_gmii_tx.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'vio_gmii_tx' (8#1) [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/synth/vio_gmii_tx.v:59]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3128.035 ; gain = 0.000 ; free physical = 4550 ; free virtual = 68097
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3128.035 ; gain = 0.000 ; free physical = 4611 ; free virtual = 68158
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3128.035 ; gain = 0.000 ; free physical = 4611 ; free virtual = 68158
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3128.035 ; gain = 0.000 ; free physical = 4603 ; free virtual = 68150
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx_ooc.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx_ooc.xdc]
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4537 ; free virtual = 68085
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4537 ; free virtual = 68085
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4640 ; free virtual = 68180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4640 ; free virtual = 68180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4639 ; free virtual = 68180
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4634 ; free virtual = 68175
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    2 Bit       Adders := 4     
++---Registers : 
+	              128 Bit    Registers := 1     
+	               48 Bit    Registers := 2     
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 21    
+	               14 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 4     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 27    
++---Muxes : 
+	   3 Input   16 Bit        Muxes := 2     
+	   2 Input   16 Bit        Muxes := 3     
+	   3 Input   14 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 9     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4628 ; free virtual = 68173
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4577 ; free virtual = 68122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4577 ; free virtual = 68122
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4570 ; free virtual = 68116
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[36] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[35] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[34] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[33] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[32] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[31] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[30] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[29] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[28] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[27] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[26] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[25] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[24] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[23] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[22] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[21] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[20] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[19] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[18] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[17] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[16] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[15] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[14] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[13] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[12] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[11] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[10] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[9] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[8] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[7] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[6] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[5] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[4] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[3] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[2] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[1] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     2|
+|2     |LUT2 |     8|
+|3     |LUT3 |    46|
+|4     |LUT4 |    28|
+|5     |LUT5 |    76|
+|6     |LUT6 |    83|
+|7     |FDRE |   482|
+|8     |FDSE |   132|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4567 ; free virtual = 68113
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4620 ; free virtual = 68165
+Synthesis Optimization Complete : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4620 ; free virtual = 68165
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4705 ; free virtual = 68250
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx_ooc.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx_ooc.xdc]
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4644 ; free virtual = 68189
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+14 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4775 ; free virtual = 68320
+INFO: [Coretcl 2-1174] Renamed 12 cell refs.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint '/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_tx/output/vio_gmii_tx/vio_gmii_tx.dcp' has been generated.
+INFO: [Vivado 12-3441] generate_netlist_ip - operation complete
+synth_ip: Time (s): cpu = 00:00:14 ; elapsed = 00:00:12 . Memory (MB): peak = 3188.859 ; gain = 60.824 ; free physical = 4853 ; free virtual = 68395
+### puts "VIO GMII_Tx created successfully."
+VIO GMII_Tx created successfully.
+## puts "Generating vio_gmii_rx IP"
+Generating vio_gmii_rx IP
+## source "$IP_DIR/vio_gmii_rx/vio_gmii_rx.tcl"
+### set IP_NAME vio_gmii_rx
+### puts "Creating VIO IP: $IP_NAME"
+Creating VIO IP: vio_gmii_rx
+### create_ip \
+###     -name vio \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 3.0 \
+###     -module_name $IP_NAME \
+###     -dir "$IP_DIR/vio_gmii_rx/output"
+### set_property -dict [list \
+###     CONFIG.C_NUM_PROBE_IN      {0} \
+###     CONFIG.C_NUM_PROBE_OUT     {1} \
+###     CONFIG.C_PROBE_OUT0_WIDTH  {1} \
+###     CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'vio_gmii_rx'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vio_gmii_rx'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'vio_gmii_rx'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'vio_gmii_rx'...
+### synth_ip [get_ips $IP_NAME]
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2020/Vivado/2020.2/data/ip'.
+Command: synth_design -top vio_gmii_rx -part xc7a100tfgg484-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 3838 ; free virtual = 67381
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'vio_gmii_rx' [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/synth/vio_gmii_rx.v:59]
+INFO: [Synth 8-6155] done synthesizing module 'vio_gmii_rx' (6#1) [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/synth/vio_gmii_rx.v:59]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4617 ; free virtual = 68161
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4619 ; free virtual = 68163
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4619 ; free virtual = 68163
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3188.859 ; gain = 0.000 ; free physical = 4614 ; free virtual = 68158
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx_ooc.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx_ooc.xdc]
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3196.863 ; gain = 0.000 ; free physical = 4556 ; free virtual = 68100
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3196.863 ; gain = 0.000 ; free physical = 4556 ; free virtual = 68100
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4600 ; free virtual = 68144
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg484-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4600 ; free virtual = 68144
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4600 ; free virtual = 68144
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4593 ; free virtual = 68138
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	              128 Bit    Registers := 1     
+	               16 Bit    Registers := 7     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 14    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 7     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4593 ; free virtual = 68141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4542 ; free virtual = 68091
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4543 ; free virtual = 68091
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4538 ; free virtual = 68086
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[36] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[35] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[34] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[33] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[32] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[31] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[30] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[29] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[28] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[27] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[26] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[25] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[24] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[23] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[22] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[21] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[20] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[19] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[18] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[17] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[16] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[15] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[14] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[13] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[12] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[11] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[10] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[9] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[8] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[7] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[6] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[5] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[4] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[3] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[2] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[1] to constant 0
+WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT2 |     3|
+|2     |LUT3 |    24|
+|3     |LUT4 |    21|
+|4     |LUT5 |    13|
+|5     |LUT6 |    60|
+|6     |FDRE |   231|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4541 ; free virtual = 68090
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 37 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3196.863 ; gain = 0.000 ; free physical = 4589 ; free virtual = 68137
+Synthesis Optimization Complete : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4589 ; free virtual = 68137
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3196.863 ; gain = 0.000 ; free physical = 4677 ; free virtual = 68226
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx_ooc.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx_ooc.xdc]
+Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx.xdc]
+Finished Parsing XDC File [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3196.863 ; gain = 0.000 ; free physical = 4620 ; free virtual = 68168
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+14 Infos, 37 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:10 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4746 ; free virtual = 68294
+INFO: [Coretcl 2-1174] Renamed 5 cell refs.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+INFO: [Common 17-1381] The checkpoint '/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/vio_gmii_rx/output/vio_gmii_rx/vio_gmii_rx.dcp' has been generated.
+INFO: [Vivado 12-3441] generate_netlist_ip - operation complete
+synth_ip: Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 3196.863 ; gain = 8.004 ; free physical = 4832 ; free virtual = 68377
+### puts "VIO GMII_Rx created successfully."
+VIO GMII_Rx created successfully.
+## puts "Done creating IPs"
+Done creating IPs
+# source Scripts/read_rtl.tcl
+## puts "Reading RTL Sources"
+Reading RTL Sources
+## puts "-> GMII_TX"
+-> GMII_TX
+## source "$RTL_DIR/GMII_Tx/files.tcl"
+### puts "Reading GMII Tx"
+Reading GMII Tx
+### read_verilog "$RTL_DIR/GMII_Tx/gmii_tx.v"
+## puts "-> GMII_RX"
+-> GMII_RX
+## source "$RTL_DIR/GMII_Rx/files.tcl"
+### puts "Reading GMII Rx"
+Reading GMII Rx
+### read_verilog "$RTL_DIR/GMII_Rx/gmii_rx.v"
+## puts "-> MDIO"
+-> MDIO
+## source "$RTL_DIR/MDIO/files.tcl"
+### puts "Reading MDIO"
+Reading MDIO
+### read_verilog "$RTL_DIR/MDIO/mdio.v"
+## puts "-> TOP"
+-> TOP
+## source "$RTL_DIR/TOP/files.tcl"
+### puts "Reading Top"
+Reading Top
+### read_verilog "$RTL_DIR/TOP/gmii_top.v"
+## puts "Done reading RTL Sources" 
+Done reading RTL Sources
+# source Scripts/read_constraints.tcl
+## puts ""
+
+## puts "========================================="
+=========================================
+## puts "Reading Constraints..."
+Reading Constraints...
+## puts "========================================="
+=========================================
+## read_xdc "$CONSTRAINTS_DIR/top.xdc"
+## puts ""
+
+## puts "Constraints Read Successfully."
+Constraints Read Successfully.
+## puts ""
+
+# source Scripts/synthesize.tcl
+## puts ""
+
+## puts "========================================="
+=========================================
+## puts "Running Synthesis..."
+Running Synthesis...
+## puts "========================================="
+=========================================
+## synth_design \
+##     -top $TOP \
+##     -part $PART
+Command: synth_design -top gmii_top -part xc7a100tfgg484-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:190]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:191]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:192]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:193]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:194]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:195]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:196]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:197]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:198]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:199]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:200]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:201]
+ERROR: [Synth 8-2715] syntax error near , [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:202]
+INFO: [Synth 8-2350] module mdio ignored due to previous errors [/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v:3]
+Failed to read verilog '/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/RTL/MDIO/mdio.v'
+INFO: [Common 17-83] Releasing license: Synthesis
+4 Infos, 0 Warnings, 0 Critical Warnings and 14 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+
+    while executing
+"source Scripts/synthesize.tcl"
+    (file "Scripts/build.tcl" line 32)
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 27 16:55:41 2026...

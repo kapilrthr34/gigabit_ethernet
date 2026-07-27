@@ -39,8 +39,10 @@ route_design
 # Post Route Optimization
 ####################################################
 
+# phys_opt_design has no -post_route switch; running it after route_design
+# is what makes it a post-route optimization pass.
 puts "Running post-route phys_opt_design..."
-phys_opt_design -post_route
+phys_opt_design
 
 ####################################################
 # Write Checkpoint

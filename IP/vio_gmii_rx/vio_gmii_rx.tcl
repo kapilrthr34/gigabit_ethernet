@@ -34,5 +34,6 @@ set_property -dict [list \
 #---------------------------------------------------
 
 generate_target all [get_ips $IP_NAME]
+synth_ip [get_ips $IP_NAME]
 
 puts "VIO GMII_Rx created successfully."

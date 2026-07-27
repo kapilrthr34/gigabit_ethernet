@@ -1,0 +1,288 @@
+/*
+
+Xilinx Vivado v2020.2 (64-bit) [Major: 2020, Minor: 2]
+SW Build: 3064766 on Wed Nov 18 09:12:47 MST 2020
+IP Build: 3064653 on Wed Nov 18 14:17:31 MST 2020
+
+Process ID (PID): 2486017
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Mon Jul 27 19:25:08 IST 2026
+Time zone: 	India Standard Time (Asia/Kolkata)
+
+OS: Ubuntu
+OS Version: 5.15.0-139-generic
+OS Architecture: amd64
+Available processors (cores): 20
+
+Display: 1
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	/tools/Xilinx/2020/Vivado/2020.2/tps/lnx64/jre11.0.2
+Java executable location: 	/tools/Xilinx/2020/Vivado/2020.2/tps/lnx64/jre11.0.2/bin/java
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	aujus_dsp_1
+User home directory: /home/aujus_dsp_1
+User working directory: /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet
+User country: 	IN
+User language: 	en
+User locale: 	en_IN
+
+RDI_BASEROOT: /tools/Xilinx/2020/Vivado
+HDI_APPROOT: /tools/Xilinx/2020/Vivado/2020.2
+RDI_DATADIR: /tools/Xilinx/2020/Vivado/2020.2/data
+RDI_BINDIR: /tools/Xilinx/2020/Vivado/2020.2/bin
+
+Vivado preferences file location: /home/aujus_dsp_1/.Xilinx/Vivado/2020.2/vivado.xml
+Vivado preferences directory: /home/aujus_dsp_1/.Xilinx/Vivado/2020.2/
+Vivado layouts directory: /home/aujus_dsp_1/.Xilinx/Vivado/2020.2/data/layouts
+PlanAhead jar file location: 	/tools/Xilinx/2020/Vivado/2020.2/lib/classes/planAhead.jar
+Vivado log file location: 	/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/vivado.log
+Vivado journal file location: 	/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-2486017-aujusDSP1
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /tools/Xilinx/2020/Vivado/2020.2/ids_lite/ISE
+XILINX_DSP: /tools/Xilinx/2020/Vivado/2020.2/ids_lite/ISE
+XILINX_HLS: /tools/Xilinx/2020/Vitis_HLS/2020.2
+XILINX_PLANAHEAD: /tools/Xilinx/2020/Vivado/2020.2
+XILINX_SDK: /tools/Xilinx/2020/Vitis/2020.2
+XILINX_VITIS: /tools/Xilinx/2020/Vitis/2020.2
+XILINX_VIVADO: /tools/Xilinx/2020/Vivado/2020.2
+XILINX_VIVADO_HLS: /tools/Xilinx/2020/Vivado/2020.2
+
+
+GUI allocated memory:	154 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,611 MB
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+selectButton((HResource) null, "XHub Stores"); // y
+// TclEventType: LOAD_FEATURE
+// TclEventType: XHUB_XSTORE_DIR_CHANGE
+// TclEventType: XHUB_XSTORE_REFRESH
+// Tcl Message: xhub::refresh_catalog [xhub::get_xstores xilinx_board_store] 
+// bz (cr):  XHub Stores : addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 1,622 MB. GUI used memory: 81 MB. Current time: 7/27/26, 7:25:09 PM IST
+// Elapsed time: 16 seconds
+selectButton(RDIResource.ProgressDialog_BACKGROUND, "Background"); // a
+selectButton(PAResourceEtoH.GettingStartedView_OPEN_HARDWARE_MANAGER, "Open Hardware Manager"); // y
+// HOptionPane Warning: 'A background task is running. Please wait until it completes and try again. (Background Task)'
+selectButton("OptionPane.button", "OK"); // JButton
+// TclEventType: XHUB_XSTORE_REFRESH
+// Tcl Message: xhub::refresh_catalog: Time (s): cpu = 00:00:07 ; elapsed = 00:00:19 . Memory (MB): peak = 7387.605 ; gain = 17.059 ; free physical = 12605 ; free virtual = 70084 
+// TclEventType: XHUB_XSTORE_DIR_CHANGE
+// TclEventType: XHUB_XSTORE_REFRESH
+selectButton("HStatusBar_ProgressStatusItem_Cancel", "Cancel"); // NullButton
+// Tcl Message: xhub::refresh_catalog [xhub::get_xstores Vivado_example_project] 
+// Tcl Message: INFO: [Common 17-41] Interrupt caught. Command should exit soon. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,633 MB. GUI used memory: 65 MB. Current time: 7/27/26, 7:25:29 PM IST
+// TclEventType: XHUB_XSTORE_REFRESH
+// Tcl Message: INFO: [Common 17-344] 'xhub::refresh_catalog' was cancelled 
+// CommandFailedException: ERROR: [Common 17-69] Command failed:  
+dismissDialog("XHub Stores"); // bz
+// Elapsed time: 41 seconds
+selectButton(PAResourceEtoH.GettingStartedView_OPEN_HARDWARE_MANAGER, "Open Hardware Manager"); // y
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl Command: 'rdi::info_commands get_hw_probes'
+// Tcl Command: 'load_features labtools'
+// TclEventType: LOAD_FEATURE
+// bz (cr):  Open Hardware Manager : addNotify
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_hw_manager 
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 82 MB (+83902kb) [00:01:13]
+// [Engine Memory]: 1,636 MB (+1564248kb) [00:01:13]
+// [GUI Memory]: 123 MB (+38120kb) [00:01:14]
+// TclEventType: HW_SESSION_OPEN
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/2020/Vivado/2020.2/data/ip'. 
+// TclEventType: HW_SESSION_OPEN
+// 'Q' command handler elapsed time: 3 seconds
+dismissDialog("Open Hardware Manager"); // bz
+// HMemoryUtils.trashcanNow. Engine heap size: 1,688 MB. GUI used memory: 68 MB. Current time: 7/27/26, 7:26:19 PM IST
+// Elapsed time: 32 seconds
+selectButton(PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, "Hardware_auto_connect_target"); // E
+// Run Command: PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET
+// TclEventType: HW_SERVER_UPDATE
+// bz (cr):  Auto Connect : addNotify
+// Tcl Message: connect_hw_server -allow_non_jtag 
+// Tcl Message: INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121 INFO: [Labtools 27-2222] Launching hw_server... INFO: [Labtools 27-2221] Launch Output:  ****** Xilinx hw_server v2020.2   **** Build date : Nov 18 2020 at 09:50:49     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042 INFO: [Labtools 27-3417] Launching cs_server... 
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-2221] Launch Output:   ******** Xilinx cs_server v2020.2   ****** Build date   : Nov 04 2020-02:32:56     **** Build number : 2020.2.1604437376       ** Copyright 2017-2020 Xilinx, Inc. All Rights Reserved.    
+// TclEventType: HW_TARGET_CHANGE
+// TclEventType: HW_TARGET_CLOSE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_ADD
+// TclEventType: HW_TARGET_UPDATE
+// WARNING: HEventQueue.dispatchEvent() is taking  2224 ms.
+// Tcl Message: open_hw_target 
+// Tcl Message: INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210512180081 
+// Tcl Message: current_hw_device [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// [Engine Memory]: 2,559 MB (+881711kb) [00:01:51]
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1435] Device xc7a100t (JTAG device index = 0) is not programmed (DONE status = 0). 
+dismissDialog("Auto Connect"); // bz
+// HMemoryUtils.trashcanNow. Engine heap size: 2,596 MB. GUI used memory: 69 MB. Current time: 7/27/26, 7:26:54 PM IST
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cr): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_SPECIFY_BITSTREAM_FILE, (String) null); // t
+setFileChooser("/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/Output/bitstream/gmii_top.bit");
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cr):  Program Device : addNotify
+dismissDialog("Program Device"); // bC
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/Output/bitstream/gmii_top.ltx} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/Output/bitstream/gmii_top.ltx} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {/home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/Output/bitstream/gmii_top.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_VIO_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// [Engine Memory]: 2,704 MB (+17592kb) [00:02:11]
+// WARNING: HEventQueue.dispatchEvent() is taking  6404 ms.
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-2302] Device xc7a100t (JTAG device index = 0) is programmed with a design that has 3 ILA core(s). INFO: [Labtools 27-2302] Device xc7a100t (JTAG device index = 0) is programmed with a design that has 3 VIO core(s). 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,738 MB. GUI used memory: 99 MB. Current time: 7/27/26, 7:27:12 PM IST
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: DEBUG_PROBE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: HW_VIO_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// TclEventType: HW_VIO_PROBE_VALUE_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// TclEventType: HW_VIO_PROBE_VALUE_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// TclEventType: HW_VIO_PROBE_VALUE_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// TclEventType: HW_VIO_PROBE_VALUE_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// TclEventType: HW_VIO_PROBE_VALUE_CHANGE
+// TclEventType: HW_ILA_CHANGE
+// Tcl Message: INFO: [Labtools 27-1889] Uploading output probe values for VIO core [hw_vio_1] INFO: [Labtools 27-1889] Uploading output probe values for VIO core [hw_vio_2] INFO: [Labtools 27-1889] Uploading output probe values for VIO core [hw_vio_3] 
+// Tcl Message: refresh_hw_device: Time (s): cpu = 00:00:20 ; elapsed = 00:00:08 . Memory (MB): peak = 8410.828 ; gain = 52.008 ; free physical = 5059 ; free virtual = 62727 
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_OPEN_WCFG
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// Waveform: addNotify
+// TclEventType: WAVEFORM_MODEL_EVENT
+// Waveform: addNotify
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// Tcl Message: display_hw_ila_data [ get_hw_ila_data hw_ila_data_1 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"u_ila_rx"}]] 
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_OPEN_WCFG
+// Waveform: addNotify
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// Waveform: addNotify
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 2,847 MB. GUI used memory: 109 MB. Current time: 7/27/26, 7:27:14 PM IST
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// [Engine Memory]: 2,847 MB (+8275kb) [00:02:13]
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// Tcl Message: display_hw_ila_data [ get_hw_ila_data hw_ila_data_2 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"u_ila_tx"}]] 
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_OPEN_WCFG
+// Waveform: addNotify
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// Waveform: addNotify
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// Tcl Message: display_hw_ila_data [ get_hw_ila_data hw_ila_data_3 -of_objects [get_hw_ilas -of_objects [get_hw_devices xc7a100t_0] -filter {CELL_NAME=~"u_ila_mdio"}]] 
+// 'I' command handler elapsed time: 19 seconds
+// Elapsed time: 11 seconds
+dismissDialog("Program Device"); // bz
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// [GUI Memory]: 132 MB (+3428kb) [00:02:14]
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "hw_vios", 3); // m
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+selectButton(PAResourceTtoZ.VioProbesTreeTablePanel_ADD_PROBE, "VioProbeTablePanel_new"); // E
+// [GUI Memory]: 142 MB (+3456kb) [00:02:15]
+selectTree(PAResourceOtoP.ProbesView_PROBES_TREE, "[root, hw_vio_3, w_crc[31:0]]", 1, true); // N - Node
+selectTree(PAResourceOtoP.ProbesView_PROBES_TREE, "[root, hw_vio_3, w_tx_en]", 7, false, true, false, false, false, false); // N - Shift Key
+selectButton(PAResourceTtoZ.VioProbesTreeTablePanel_OK, "OK"); // a
+// [GUI Memory]: 153 MB (+3608kb) [00:02:19]
+selectButton(PAResourceTtoZ.VioProbesTreeTablePanel_ADD_PROBE, "VioProbeTablePanel_new"); // E
+selectTree(PAResourceOtoP.ProbesView_PROBES_TREE, "[root, hw_vio_1, phy_addr[4:0]]", 1, true); // N - Node
+selectTree(PAResourceOtoP.ProbesView_PROBES_TREE, "[root, hw_vio_1, wr_init]", 9, false, true, false, false, false, false); // N - Shift Key
+selectButton(PAResourceTtoZ.VioProbesTreeTablePanel_OK, "OK"); // a
+// [GUI Memory]: 161 MB (+984kb) [00:02:23]
+selectButton(PAResourceTtoZ.VioProbesTreeTablePanel_ADD_PROBE, "VioProbeTablePanel_new"); // E
+selectTree(PAResourceOtoP.ProbesView_PROBES_TREE, "[root, hw_vio_2, eth_rst_n]", 1, false); // N

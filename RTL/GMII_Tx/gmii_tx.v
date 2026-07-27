@@ -128,9 +128,9 @@ always@(negedge clk) begin
 end
 
 /*------Debug Section-------*/
-(* mark_debug = "true" , keep = "true" *) wire [7:0]    w_dbg_gmii_txd    = gmii_txd   ;
-(* mark_debug = "true" , keep = "true" *) wire          w_dbg_gmii_tx_en  = gmii_tx_en ;
-(* mark_debug = "true" , keep = "true" *) wire          w_dbg_gmii_tx_er  = gmii_tx_er ;
-(* mark_debug = "true" , keep = "true" *) wire          w_dbg_tx_done     = tx_done    ;
+(* mark_debug = "true" , keep = "true", dont_touch = "true" *) wire [7:0]    w_dbg_gmii_txd    = gmii_txd   ;
+(* mark_debug = "true" , keep = "true", dont_touch = "true" *) wire          w_dbg_gmii_tx_en  = gmii_tx_en ;
+(* mark_debug = "true" , keep = "true", dont_touch = "true" *) wire          w_dbg_gmii_tx_er  = gmii_tx_er ;
+(* mark_debug = "true" , keep = "true", dont_touch = "true" *) wire          w_dbg_tx_done     = tx_done    ;
 /*--------------------------*/
 endmodule

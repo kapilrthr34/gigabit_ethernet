@@ -42,6 +42,7 @@ assign gmii_tx_clk = w_clk_125;
 
 /*------MDIO Instantiation---------------------------------------*/
 wire            w_rst_100;
+wire            phy_rst;
 wire [4:0]      phy_addr;
 wire [4:0]      reg_addr;
 wire            wr_init;
@@ -111,23 +112,19 @@ wire w_rst_125;
 wire [47:0] w_src_addr;
 wire [47:0] w_dest_addr;
 wire [15:0] w_eth_type;
-wire [31:0] w_burst_len;   // repurposed from the old manually-entered "crc" VIO
-                            // probe -- CRC is now computed in hardware, so this
-                            // 32-bit probe now sets how many back-to-back frames
-                            // to send per trigger.
+wire [31:0] w_crc;
 wire        w_tx_en;
 wire        w_tx_done;
-wire        w_burst_done;
 
 // GMII Tx VIO
 vio_gmii_tx u_vio_tx_gmii (
   .clk          (w_clk_125),                // input wire clk
-  .probe_in0    (w_burst_done), // input wire [0 : 0] probe_in0 -- pulses once the WHOLE burst is sent
+  .probe_in0    (w_tx_done),  // input wire [0 : 0] probe_in0
   .probe_out0   (w_rst_125),  // output wire [0 : 0] probe_out0
   .probe_out1   (w_dest_addr),  // output wire [47 : 0] probe_out1
   .probe_out2   (w_src_addr),  // output wire [47 : 0] probe_out2
   .probe_out3   (w_eth_type),  // output wire [15 : 0] probe_out3
-  .probe_out4   (w_burst_len),  // output wire [31 : 0] probe_out4 (was w_crc)
+  .probe_out4   (w_crc),  // output wire [31 : 0] probe_out4
   .probe_out5   (w_tx_en)  // output wire [0 : 0] probe_out5
 );
 
@@ -137,13 +134,12 @@ gmii_tx u_gmii_inst(
 .src_addr   (w_src_addr),
 .dest_addr  (w_dest_addr),
 .eth_type   (w_eth_type),
-.burst_len  (w_burst_len),
+.crc        (w_crc),
 .tx_en      (w_tx_en),
 .gmii_txd   (gmii_txd),
 .gmii_tx_en (gmii_tx_en),
 .gmii_tx_er (gmii_tx_er),
-.tx_done    (w_tx_done),
-.burst_done (w_burst_done)
+.tx_done    (w_tx_done)
 );
 
 /*----------------------------------------*/

@@ -1,24 +1,22 @@
 
 // file: clk_gen.v
-// 
-// (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
-// 
+// (c) Copyright 2017-2018, 2023 Advanced Micro Devices, Inc. All rights reserved.
+//
 // This file contains confidential and proprietary information
-// of Xilinx, Inc. and is protected under U.S. and
-// international copyright and other intellectual property
-// laws.
-// 
+// of AMD and is protected under U.S. and international copyright
+// and other intellectual property laws.
+//
 // DISCLAIMER
 // This disclaimer is not a license and does not grant any
 // rights to the materials distributed herewith. Except as
 // otherwise provided in a valid license issued to you by
-// Xilinx, and to the maximum extent permitted by applicable
+// AMD, and to the maximum extent permitted by applicable
 // law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
-// WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+// WITH ALL FAULTS, AND AMD HEREBY DISCLAIMS ALL WARRANTIES
 // AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
 // BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
 // INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
-// (2) Xilinx shall not be liable (whether in contract or tort,
+// (2) AMD shall not be liable (whether in contract or tort,
 // including negligence, or under any other theory of
 // liability) for any loss or damage of any kind or nature
 // related to, arising under or in connection with these
@@ -27,11 +25,11 @@
 // (including loss of data, profits, goodwill, or any type of
 // loss or damage suffered as a result of any action brought
 // by a third party) even if such damage or loss was
-// reasonably foreseeable or Xilinx had been advised of the
+// reasonably foreseeable or AMD had been advised of the
 // possibility of the same.
-// 
+//
 // CRITICAL APPLICATIONS
-// Xilinx products are not designed or intended to be fail-
+// AMD products are not designed or intended to be fail-
 // safe, or for use in any application requiring fail-safe
 // performance, such as life-support or safety devices or
 // systems, Class III medical devices, nuclear facilities,
@@ -40,13 +38,12 @@
 // injury, or severe property or environmental damage
 // (individually and collectively, "Critical
 // Applications"). Customer assumes the sole risk and
-// liability of any use of Xilinx products in Critical
+// liability of any use of AMD products in Critical
 // Applications, subject only to applicable laws and
 // regulations governing limitations on product liability.
-// 
+//
 // THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 // PART OF THIS FILE AT ALL TIMES.
-// 
 //----------------------------------------------------------------------------
 // User entered comments
 //----------------------------------------------------------------------------
@@ -56,8 +53,8 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// _clk_100__100.00000______0.000______50.0______103.903_____80.662
-// _clk_125__125.00000______0.000______50.0_______99.538_____80.662
+// _clk_100__100.00000______0.000______50.0______112.316_____89.971
+// _clk_125__125.00000______0.000______50.0______107.523_____89.971
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -79,7 +76,7 @@ module clk_gen_clk_wiz
   //------------------------------------
 wire clk_in1_clk_gen;
 wire clk_in2_clk_gen;
-  IBUFDS clkin1_ibufds
+  IBUFDS clkin1_ibufgds
    (.O  (clk_in1_clk_gen),
     .I  (clk_in1_p),
     .IB (clk_in1_n));
@@ -107,6 +104,7 @@ wire clk_in2_clk_gen;
   wire        psdone_unused;
   wire        locked_int;
   wire        clkfbout_clk_gen;
+  wire        clkfbout_buf_clk_gen;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
    wire clkout1b_unused;
@@ -120,29 +118,25 @@ wire clk_in2_clk_gen;
   wire        clkfbstopped_unused;
   wire        clkinstopped_unused;
 
-
-  
-    MMCME4_ADV
-
+  MMCME2_ADV
   #(.BANDWIDTH            ("OPTIMIZED"),
     .CLKOUT4_CASCADE      ("FALSE"),
-    .COMPENSATION         ("AUTO"),
+    .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (6.250),
+    .CLKFBOUT_MULT_F      (5.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (12.500),
+    .CLKOUT0_DIVIDE_F     (10.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (10),
+    .CLKOUT1_DIVIDE       (8),
     .CLKOUT1_PHASE        (0.000),
     .CLKOUT1_DUTY_CYCLE   (0.500),
     .CLKOUT1_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (5.000))
-  
-  mmcme4_adv_inst
+  mmcm_adv_inst
     // Output clocks
    (
     .CLKFBOUT            (clkfbout_clk_gen),
@@ -159,7 +153,7 @@ wire clk_in2_clk_gen;
     .CLKOUT5             (clkout5_unused),
     .CLKOUT6             (clkout6_unused),
      // Input clock control
-    .CLKFBIN             (clkfbout_clk_gen),
+    .CLKFBIN             (clkfbout_buf_clk_gen),
     .CLKIN1              (clk_in1_clk_gen),
     .CLKIN2              (1'b0),
      // Tied to always select the primary input clock
@@ -172,8 +166,6 @@ wire clk_in2_clk_gen;
     .DO                  (do_unused),
     .DRDY                (drdy_unused),
     .DWE                 (1'b0),
-    .CDDCDONE            (),
-    .CDDCREQ             (1'b0),
     // Ports for dynamic phase shift
     .PSCLK               (1'b0),
     .PSEN                (1'b0),
@@ -190,6 +182,10 @@ wire clk_in2_clk_gen;
 //--------------------------------------
  // Output buffering
   //-----------------------------------
+
+  BUFG clkf_buf
+   (.O (clkfbout_buf_clk_gen),
+    .I (clkfbout_clk_gen));
 
 
 

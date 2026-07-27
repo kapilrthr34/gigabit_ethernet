@@ -119,10 +119,10 @@ end
 assign w_frame_valid = (transmitted_crc == r_crc_buff);
 
 /*-------Debug Signals (ILA on rx_clk domain)----------------*/
-(* mark_debug = "true", keep= "true" *)  wire [7:0]  w_dbg_rxd       = rxd;       // RX data
-(* mark_debug = "true", keep= "true" *)  wire        w_dbg_rx_dv     = rx_dv;     // RX data valid
-(* mark_debug = "true", keep= "true" *)  wire        w_dbg_rx_er     = rx_er;     // RX error
-(* mark_debug = "true", keep= "true" *)  wire [2:0]  w_dbg_rx_state  = state;     // FSM state (context / trigger)
+(* mark_debug = "true", keep= "true", dont_touch = "true" *)  wire [7:0]  w_dbg_rxd       = rxd;       // RX data
+(* mark_debug = "true", keep= "true", dont_touch = "true" *)  wire        w_dbg_rx_dv     = rx_dv;     // RX data valid
+(* mark_debug = "true", keep= "true", dont_touch = "true" *)  wire        w_dbg_rx_er     = rx_er;     // RX error
+(* mark_debug = "true", keep= "true", dont_touch = "true" *)  wire [2:0]  w_dbg_rx_state  = state;     // FSM state (context / trigger)
 
 
 

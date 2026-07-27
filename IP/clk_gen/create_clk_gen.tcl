@@ -10,7 +10,7 @@ create_ip \
     -library ip \
     -version 6.0 \
     -module_name $IP_NAME \
-    -dir $IP_DIR/clk_gen/Output
+    -dir $IP_DIR/clk_gen/output
 
 # Configure the IP
 set_property -dict [list \
@@ -26,7 +26,9 @@ set_property -dict [list \
     CONFIG.USE_LOCKED                   {false} \
 ] [get_ips $IP_NAME]
 
-# Generate the output products
+# Generate the output products, then synthesize the IP out-of-context so the
+# top-level synth_design can link against its checkpoint.
 generate_target all [get_ips $IP_NAME]
+synth_ip [get_ips $IP_NAME]
 
 puts "Clock wizard IP generation complete"

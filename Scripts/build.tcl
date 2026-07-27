@@ -30,6 +30,7 @@ source Scripts/read_rtl.tcl
 source Scripts/read_constraints.tcl
 
 source Scripts/synthesize.tcl
+source Scripts/add_debug.tcl
 source Scripts/implement.tcl
 
 source Scripts/reports.tcl

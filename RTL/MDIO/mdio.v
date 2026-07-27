@@ -187,19 +187,19 @@ assign mdio = r_mdio_en ? r_mdio_out : 1'bz;
 /*-----------------------------------*/
 
 /*-------Debug Signals----------------*/
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_mdio_tx    = r_mdio_out;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_mdio_rx    = mdio;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_mdio_en    = r_mdio_en;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_mdc        = mdc;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_mdc_re     = r_mdc_re;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_mdc_fe     = r_mdc_fe;
-(* mark_debug = "true", keep= "true" *) wire [1:0]                  w_dbg_sm_main    = sm_main;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_wr_done    = wr_done;
-(* mark_debug = "true", keep= "true" *) wire                        w_dbg_rd_done    = rd_done;
-(* mark_debug = "true", keep= "true" *) wire [$clog2(TOTAL_BITS):0] w_dbg_bit_count  = r_bit_count;
-(* mark_debug = "true", keep= "true" *) wire [17:0]                 w_dbg_r_rd_data  = r_rd_data;
-(* mark_debug = "true", keep= "true" *) wire [15:0]                 w_dbg_rd_data    = rd_data;
-(* mark_debug = "true", keep= "true" *) wire [63:0]                 w_dbgr_tx_reg    = r_tx_reg;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_mdio_tx    = r_mdio_out;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_mdio_rx    = mdio;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_mdio_en    = r_mdio_en;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_mdc        = mdc;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_mdc_re     = r_mdc_re;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_mdc_fe     = r_mdc_fe;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire [1:0]                  w_dbg_sm_main    = sm_main;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_wr_done    = wr_done;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire                        w_dbg_rd_done    = rd_done;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire [$clog2(TOTAL_BITS):0] w_dbg_bit_count  = r_bit_count;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire [17:0]                 w_dbg_r_rd_data  = r_rd_data;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire [15:0]                 w_dbg_rd_data    = rd_data;
+(* mark_debug = "true", keep= "true", dont_touch = "true" *) wire [63:0]                 w_dbgr_tx_reg    = r_tx_reg;
 
 /*------------------------------------*/
 

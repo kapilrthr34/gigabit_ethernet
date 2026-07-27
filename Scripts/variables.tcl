@@ -3,7 +3,7 @@
 ####################################################
 
 set PROJECT_NAME "gigabit_ethernet"
-set PART         "xczu43dr-ffvg1517-1-i"
+set PART         "xc7a100tfgg484-2"
 set TOP          "gmii_top"
 
 ####################################################
