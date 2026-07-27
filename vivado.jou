@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jul 26 19:09:09 2026
+# Process ID: 4024
+# Current directory: F:/PROJECTS/gigabit_ethernet
+# Command line: vivado.exe -mode batch -source Scripts/build.tcl
+# Log file: F:/PROJECTS/gigabit_ethernet/vivado.log
+# Journal file: F:/PROJECTS/gigabit_ethernet\vivado.jou
+#-----------------------------------------------------------
+source Scripts/build.tcl

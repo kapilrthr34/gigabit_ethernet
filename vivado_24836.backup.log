@@ -1,0 +1,206 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jul 26 19:07:11 2026
+# Process ID: 24836
+# Current directory: F:/PROJECTS/gigabit_ethernet
+# Command line: vivado.exe -mode batch -source Scripts/build.tcl
+# Log file: F:/PROJECTS/gigabit_ethernet/vivado.log
+# Journal file: F:/PROJECTS/gigabit_ethernet\vivado.jou
+#-----------------------------------------------------------
+source Scripts/build.tcl
+# puts ""
+
+# puts "========================================="
+=========================================
+# puts "Gigabit Ethernet Build Started"
+Gigabit Ethernet Build Started
+# puts "========================================="
+=========================================
+# puts ""
+
+# source Scripts/variables.tcl
+## set PROJECT_NAME "gigabit_ethernet"
+## set PART         "xczu43dr-ffvg1517-1-i"
+## set TOP          "gmii_top"
+## set ROOT_DIR        [pwd]
+## set RTL_DIR         "$ROOT_DIR/RTL"
+## set CONSTRAINTS_DIR "$ROOT_DIR/Constraints"
+## set IP_DIR          "$ROOT_DIR/IP"
+## set SCRIPTS_DIR     "$ROOT_DIR/Scripts"
+## set OUTPUT_DIR      "$ROOT_DIR/Output"
+## set BIT_DIR         "$OUTPUT_DIR/bitstream"
+## set CHECKPOINT_DIR  "$OUTPUT_DIR/checkpoint"
+## set REPORTS_DIR     "$OUTPUT_DIR/reports"
+## foreach dir [list \
+##     $OUTPUT_DIR \
+##     $BIT_DIR \
+##     $CHECKPOINT_DIR \
+##     $REPORTS_DIR] {
+## 
+##     file mkdir $dir
+## }
+## set BIT_FILE        "$BIT_DIR/$TOP.bit"
+## set DCP_FILE        "$CHECKPOINT_DIR/$TOP.dcp"
+## set UTIL_REPORT     "$REPORTS_DIR/utilization.rpt"
+## set TIMING_REPORT   "$REPORTS_DIR/timing_summary.rpt"
+## set POWER_REPORT    "$REPORTS_DIR/power.rpt"
+# create_project \
+#     -in_memory \
+#     -part $PART
+# source Scripts/create_ips.tcl
+## puts "Creating IPs"
+Creating IPs
+## puts "Generating clk_gen IP"
+Generating clk_gen IP
+## source "$IP_DIR/clk_gen/create_clk_gen.tcl"
+### set IP_NAME clk_gen
+### puts "Generating $IP_NAME IP in $IP_DIR"
+Generating clk_gen IP in F:/PROJECTS/gigabit_ethernet/IP
+### create_ip \
+###     -name clk_wiz \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 6.0 \
+###     -module_name $IP_NAME \
+###     -dir $IP_DIR/clk_gen/Output
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+create_ip: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1361.871 ; gain = 348.680
+### set_property -dict [list \
+###     CONFIG.PRIM_SOURCE                  {Differential_clock_capable_pin} \
+###     CONFIG.PRIM_IN_FREQ                 {200.000} \
+###     CONFIG.NUM_OUT_CLKS                 {2} \
+###     CONFIG.CLKOUT1_USED                 {true} \
+###     CONFIG.CLKOUT2_USED                 {true} \
+###     CONFIG.CLK_OUT1_PORT                {clk_100} \
+###     CONFIG.CLK_OUT2_PORT                {clk_125} \
+###     CONFIG.CLKOUT2_REQUESTED_OUT_FREQ   {125.000} \
+###     CONFIG.USE_RESET                    {false} \
+###     CONFIG.USE_LOCKED                   {false} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Implementation' target for IP 'clk_gen'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'clk_gen'...
+### puts "Clock wizard IP generation complete"
+Clock wizard IP generation complete
+## puts "Generating vio_mdio IP"
+Generating vio_mdio IP
+## source "$IP_DIR/vio_mdio/vio_mdio.tcl"
+### set IP_NAME vio_mdio
+### puts "Creating VIO IP: $IP_NAME"
+Creating VIO IP: vio_mdio
+### create_ip \
+###     -name vio \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 3.0 \
+###     -module_name $IP_NAME \
+###     -dir "$IP_DIR/vio_mdio/output"
+### set_property -dict [list \
+###     CONFIG.C_NUM_PROBE_IN        {2} \
+###     CONFIG.C_NUM_PROBE_OUT       {7} \
+###     CONFIG.C_PROBE_IN0_WIDTH     {16} \
+###     CONFIG.C_PROBE_IN1_WIDTH     {16} \
+###     CONFIG.C_PROBE_OUT1_WIDTH    {5} \
+###     CONFIG.C_PROBE_OUT1_INIT_VAL {0x1} \
+###     CONFIG.C_PROBE_OUT2_WIDTH    {5} \
+###     CONFIG.C_PROBE_OUT5_WIDTH    {16} \
+###     CONFIG.C_PROBE_OUT5_INIT_VAL {0x1340} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'vio_mdio'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vio_mdio'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'vio_mdio'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'vio_mdio'...
+### puts "VIO MDIO created successfully."
+VIO MDIO created successfully.
+## puts "Generating vio_gmii_tx IP"
+Generating vio_gmii_tx IP
+## source "$IP_DIR/vio_gmii_tx/vio_gmii_tx.tcl"
+### set IP_NAME vio_gmii_tx
+### puts "Creating VIO IP: $IP_NAME"
+Creating VIO IP: vio_gmii_tx
+### create_ip \
+###     -name vio \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 3.0 \
+###     -module_name $IP_NAME \
+###     -dir "$IP_DIR/vio_gmii_tx/output"
+### set_property -dict [list \
+###     CONFIG.C_NUM_PROBE_IN      {1} \
+###     CONFIG.C_NUM_PROBE_OUT     {6} \
+###     CONFIG.C_PROBE_IN0_WIDTH   {1} \
+###     CONFIG.C_PROBE_OUT0_WIDTH  {1} \
+###     CONFIG.C_PROBE_OUT1_WIDTH  {48} \
+###     CONFIG.C_PROBE_OUT2_WIDTH  {48} \
+###     CONFIG.C_PROBE_OUT3_WIDTH  {16} \
+###     CONFIG.C_PROBE_OUT4_WIDTH  {32} \
+###     CONFIG.C_PROBE_OUT5_WIDTH  {1} \
+###     CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+###     CONFIG.C_PROBE_OUT1_INIT_VAL {0x000000FFFFFF} \
+###     CONFIG.C_PROBE_OUT2_INIT_VAL {0x02123456789A} \
+###     CONFIG.C_PROBE_OUT3_INIT_VAL {0x88B5} \
+###     CONFIG.C_PROBE_OUT4_INIT_VAL {0x83E8CCEE} \
+###     CONFIG.C_PROBE_OUT5_INIT_VAL {0x0} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'vio_gmii_tx'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vio_gmii_tx'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'vio_gmii_tx'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'vio_gmii_tx'...
+### puts "VIO GMII_Tx created successfully."
+VIO GMII_Tx created successfully.
+## puts "Generating vio_gmii_rx IP"
+Generating vio_gmii_rx IP
+## source "$IP_DIR/vio_gmii_rx/vio_gmii_rx.tcl"
+### set IP_NAME vio_gmii_rx
+### puts "Creating VIO IP: $IP_NAME"
+Creating VIO IP: vio_gmii_rx
+### create_ip \
+###     -name vio \
+###     -vendor xilinx.com \
+###     -library ip \
+###     -version 3.0 \
+###     -module_name $IP_NAME \
+###     -dir "$IP_DIR/vio_gmii_rx/output"
+### set_property -dict [list \
+###     CONFIG.C_NUM_PROBE_IN      {0} \
+###     CONFIG.C_NUM_PROBE_OUT     {1} \
+###     CONFIG.C_PROBE_OUT0_WIDTH  {1} \
+###     CONFIG.C_PROBE_OUT0_INIT_VAL {0x0} \
+### ] [get_ips $IP_NAME]
+### generate_target all [get_ips $IP_NAME]
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'vio_gmii_rx'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'vio_gmii_rx'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'vio_gmii_rx'...
+INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'vio_gmii_rx'...
+### puts "VIO GMII_Rx created successfully."
+VIO GMII_Rx created successfully.
+## puts "Done creating IPs"
+Done creating IPs
+# source Scripts/read_rtl.tcl
+## puts "Reading RTL Sources"
+Reading RTL Sources
+## puts "-> GMII_TX"
+-> GMII_TX
+## source "$RTL_DIR/GMII_Tx/files.tcl"
+### puts "Reading GMII Tx"
+Reading GMII Tx
+### read_verilog "$RTL_DIR/gmii_tx.v"
+ERROR: [Common 17-69] Command failed: File 'F:/PROJECTS/gigabit_ethernet/RTL/gmii_tx.v' does not exist
+
+    while executing
+"source "$RTL_DIR/GMII_Tx/files.tcl""
+    (file "Scripts/read_rtl.tcl" line 4)
+
+    while executing
+"source Scripts/read_rtl.tcl"
+    (file "Scripts/build.tcl" line 29)
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 26 19:07:24 2026...

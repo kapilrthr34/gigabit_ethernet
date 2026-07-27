@@ -1,0 +1,11 @@
+puts "Reading RTL Sources"
+
+puts "-> GMII_TX"
+source "$RTL_DIR/GMII_Tx/files.tcl"
+puts "-> GMII_RX"
+source "$RTL_DIR/GMII_Rx/files.tcl"
+puts "-> MDIO"
+source "$RTL_DIR/MDIO/files.tcl"
+puts "-> TOP"
+source "$RTL_DIR/TOP/files.tcl"
+puts "Done reading RTL Sources" 
