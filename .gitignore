@@ -1,0 +1,13 @@
+# Vivado batch-mode session junk (non-project flow creates this relative to CWD,
+# unrelated to the actual project outputs in IP/*/output and Output/)
+.Xil/
+vivado*.log
+vivado*.jou
+vivado*.str
+*.backup.log
+*.backup.jou
+webtalk*.log
+webtalk*.jou
+usage_statistics_webtalk.html
+*.Xil
+.jobs/

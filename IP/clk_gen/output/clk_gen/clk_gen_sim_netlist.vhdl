@@ -1,8 +1,7 @@
--- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
--- Date        : Mon Jul 27 18:19:05 2026
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Tue Jul 28 00:54:10 2026
 -- Host        : aujusDSP1 running 64-bit Ubuntu 20.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_sim_netlist.vhdl
@@ -15,16 +14,18 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity clk_gen_clk_wiz is
+entity clk_genclk_gen_clk_wiz is
   port (
     clk_100 : out STD_LOGIC;
     clk_125 : out STD_LOGIC;
     clk_in1_p : in STD_LOGIC;
     clk_in1_n : in STD_LOGIC
   );
-end clk_gen_clk_wiz;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of clk_genclk_gen_clk_wiz : entity is "clk_gen_clk_wiz";
+end clk_genclk_gen_clk_wiz;
 
-architecture STRUCTURE of clk_gen_clk_wiz is
+architecture STRUCTURE of clk_genclk_gen_clk_wiz is
   signal clk_100_clk_gen : STD_LOGIC;
   signal clk_125_clk_gen : STD_LOGIC;
   signal clk_in1_clk_gen : STD_LOGIC;
@@ -187,7 +188,7 @@ end clk_gen;
 
 architecture STRUCTURE of clk_gen is
 begin
-inst: entity work.clk_gen_clk_wiz
+inst: entity work.clk_genclk_gen_clk_wiz
      port map (
       clk_100 => clk_100,
       clk_125 => clk_125,

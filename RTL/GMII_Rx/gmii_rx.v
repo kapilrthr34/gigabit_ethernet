@@ -76,7 +76,7 @@ begin
             end
             
             DATA: begin
-                if(r_data_count >= 'd46) begin
+                if(r_data_count >= 'd60) begin
                     r_data_count <= 'd0;
                     state <= FCS;
                 end

@@ -1,7 +1,7 @@
-Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
--------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date             : Mon Jul 27 18:22:03 2026
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+| Date             : Tue Jul 28 00:56:55 2026
 | Host             : aujusDSP1 running 64-bit Ubuntu 20.04.6 LTS
 | Command          : report_power -file /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/Output/reports/power.rpt
 | Design           : gmii_top
@@ -10,7 +10,7 @@ Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanc
 | Grade            : commercial
 | Process          : typical
 | Characterization : Production
--------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 Power Report
 
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.276        |
+| Total On-Chip Power (W)  | 0.273        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.178        |
+| Dynamic (W)              | 0.176        |
 | Device Static (W)        | 0.098        |
 | Effective TJA (C/W)      | 2.7          |
 | Max Ambient (C)          | 84.3         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.037 |        8 |       --- |             --- |
-| Slice Logic              |     0.003 |    11624 |       --- |             --- |
-|   LUT as Logic           |     0.003 |     3367 |     63400 |            5.31 |
-|   Register               |    <0.001 |     6449 |    126800 |            5.09 |
+| Clocks                   |     0.035 |        8 |       --- |             --- |
+| Slice Logic              |     0.003 |    11445 |       --- |             --- |
+|   LUT as Logic           |     0.002 |     3262 |     63400 |            5.15 |
+|   Register               |    <0.001 |     6413 |    126800 |            5.06 |
 |   CARRY4                 |    <0.001 |      103 |     15850 |            0.65 |
 |   LUT as Shift Register  |    <0.001 |      271 |     19000 |            1.43 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     19000 |            0.13 |
-|   F7/F8 Muxes            |    <0.001 |       27 |     63400 |            0.04 |
-|   Others                 |     0.000 |      626 |       --- |             --- |
-| Signals                  |     0.006 |     8812 |       --- |             --- |
+|   F7/F8 Muxes            |    <0.001 |       28 |     63400 |            0.04 |
+|   Others                 |     0.000 |      617 |       --- |             --- |
+| Signals                  |     0.005 |     8649 |       --- |             --- |
 | Block RAM                |     0.006 |      6.5 |       135 |            4.81 |
 | MMCM                     |     0.107 |        1 |         6 |           16.67 |
-| I/O                      |     0.018 |       30 |       285 |           10.53 |
+| I/O                      |     0.019 |       30 |       285 |           10.53 |
 | Static Power             |     0.098 |          |           |                 |
-| Total                    |     0.276 |          |           |                 |
+| Total                    |     0.273 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.069 |       0.053 |      0.015 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.066 |       0.050 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.078 |       0.060 |      0.018 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.009 |       0.005 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -129,16 +129,16 @@ Table of Contents
 2.2 Clock Constraints
 ---------------------
 
-+--------------------------------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-| Clock                                                                                      | Domain                                                            | Constraint (ns) |
-+--------------------------------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
-| clk_100_clk_gen                                                                            | u_clk_gen/inst/clk_100_clk_gen                                    |            10.0 |
-| clk_125_clk_gen                                                                            | u_clk_gen/inst/clk_125_clk_gen                                    |             8.0 |
-| clk_in1_p                                                                                  | clk_in1_p                                                         |             5.0 |
-| clkfbout_clk_gen                                                                           | u_clk_gen/inst/clkfbout_clk_gen                                   |             5.0 |
-| dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/TCK |            33.0 |
-| eth_rx_clk                                                                                 | eth_rx_clk                                                        |             8.0 |
-+--------------------------------------------------------------------------------------------+-------------------------------------------------------------------+-----------------+
++--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
+| Clock                                                                                      | Domain                                                               | Constraint (ns) |
++--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
+| clk_100_clk_gen                                                                            | u_clk_gen/inst/clk_100_clk_gen                                       |            10.0 |
+| clk_125_clk_gen                                                                            | u_clk_gen/inst/clk_125_clk_gen                                       |             8.0 |
+| clk_in1_p                                                                                  | clk_in1_p                                                            |             5.0 |
+| clkfbout_clk_gen                                                                           | u_clk_gen/inst/clkfbout_clk_gen                                      |             5.0 |
+| dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
+| eth_rx_clk                                                                                 | eth_rx_clk                                                           |             8.0 |
++--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 
 
 3. Detailed Reports
@@ -150,7 +150,7 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| gmii_top                 |     0.178 |
+| gmii_top                 |     0.176 |
 |   dbg_hub                |     0.004 |
 |     inst                 |     0.004 |
 |       BSCANID.u_xsdbm_id |     0.004 |
@@ -160,20 +160,22 @@ Table of Contents
 |   u_ila_mdio             |     0.012 |
 |     inst                 |     0.012 |
 |       ila_core_inst      |     0.012 |
-|   u_ila_rx               |     0.013 |
-|     inst                 |     0.013 |
-|       ila_core_inst      |     0.013 |
-|   u_ila_tx               |     0.010 |
-|     inst                 |     0.010 |
-|       ila_core_inst      |     0.010 |
+|   u_ila_rx               |     0.012 |
+|     inst                 |     0.012 |
+|       ila_core_inst      |     0.012 |
+|   u_ila_tx               |     0.009 |
+|     inst                 |     0.009 |
+|       ila_core_inst      |     0.009 |
+|   u_mdio_inst_0          |     0.001 |
+|   u_mdio_inst_1          |     0.001 |
 |   u_vio_mdio             |     0.003 |
 |     inst                 |     0.003 |
 |       U_XSDB_SLAVE       |     0.001 |
 |   u_vio_rx               |     0.002 |
 |     inst                 |     0.002 |
 |       U_XSDB_SLAVE       |     0.001 |
-|   u_vio_tx_gmii          |     0.004 |
-|     inst                 |     0.004 |
+|   u_vio_tx_gmii          |     0.003 |
+|     inst                 |     0.003 |
 |       PROBE_OUT_ALL_INST |     0.002 |
 |       U_XSDB_SLAVE       |     0.001 |
 +--------------------------+-----------+

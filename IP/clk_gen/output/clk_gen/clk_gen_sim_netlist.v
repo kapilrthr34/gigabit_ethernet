@@ -1,8 +1,7 @@
-// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-// Date        : Mon Jul 27 18:19:05 2026
+// Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+// Date        : Tue Jul 28 00:54:10 2026
 // Host        : aujusDSP1 running 64-bit Ubuntu 20.04.6 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/aujus_dsp_1/Documents/Learning/gigabit_ethernet/IP/clk_gen/output/clk_gen/clk_gen_sim_netlist.v
@@ -29,14 +28,15 @@ module clk_gen
   (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR *) wire clk_in1_n;
   (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR *) wire clk_in1_p;
 
-  clk_gen_clk_wiz inst
+  clk_genclk_gen_clk_wiz inst
        (.clk_100(clk_100),
         .clk_125(clk_125),
         .clk_in1_n(clk_in1_n),
         .clk_in1_p(clk_in1_p));
 endmodule
 
-module clk_gen_clk_wiz
+(* ORIG_REF_NAME = "clk_gen_clk_wiz" *) 
+module clk_genclk_gen_clk_wiz
    (clk_100,
     clk_125,
     clk_in1_p,
